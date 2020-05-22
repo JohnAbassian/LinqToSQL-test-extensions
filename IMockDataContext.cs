@@ -19,7 +19,7 @@ namespace Mocking {
 	}
 
 	public class MemoryTable<TEntity> : IMockTable, ITable, ITable<TEntity> where TEntity : class {
-		public bool IsReadOnly => false;
+		public Boolean IsReadOnly => false;
 
 		private readonly IMockDataContext _context;
 		private readonly MetaTable _metaTable;
@@ -64,7 +64,7 @@ namespace Mocking {
 			lock (lockObj) {
 				var rowType = _metaTable.RowType;
 
-				// insert linked objects
+				// insert linked Objects
 				foreach (MetaAssociation fk_assoc in rowType.Associations.Where(a => a.IsForeignKey)) {
 					PropertyInfo prop = (PropertyInfo)fk_assoc.ThisMember.Member;
 					Object fk_entity = prop.GetValue(entity, null);
@@ -115,13 +115,13 @@ namespace Mocking {
 		public IQueryProvider Provider => new CaseInsensitiveQueries(_stored.AsQueryable().Provider);
 
 		#region ITable members
-		public void Attach(object entity, object original) => throw new NotImplementedException();
+		public void Attach(Object entity, Object original) => throw new NotImplementedException();
 
-		public void Attach(object entity, bool asModified) => throw new NotImplementedException();
+		public void Attach(Object entity, Boolean asModified) => throw new NotImplementedException();
 
-		public void Attach(object entity) => throw new NotImplementedException();
+		public void Attach(Object entity) => throw new NotImplementedException();
 
-		public void AttachAll(System.Collections.IEnumerable entities, bool asModified) => throw new NotImplementedException();
+		public void AttachAll(System.Collections.IEnumerable entities, Boolean asModified) => throw new NotImplementedException();
 
 		public void AttachAll(System.Collections.IEnumerable entities) => throw new NotImplementedException();
 
@@ -129,11 +129,11 @@ namespace Mocking {
 
 		public void DeleteAllOnSubmit(System.Collections.IEnumerable entities) => throw new NotImplementedException();
 
-		public void DeleteOnSubmit(object entity) => DeleteOnSubmit((TEntity)entity);
+		public void DeleteOnSubmit(Object entity) => DeleteOnSubmit((TEntity)entity);
 
-		public ModifiedMemberInfo[] GetModifiedMembers(object entity) => throw new NotImplementedException();
+		public ModifiedMemberInfo[] GetModifiedMembers(Object entity) => throw new NotImplementedException();
 
-		public object GetOriginalEntityState(object entity) => throw new NotImplementedException();
+		public Object GetOriginalEntityState(Object entity) => throw new NotImplementedException();
 
 		public void InsertAllOnSubmit(System.Collections.IEnumerable entities) {
 			foreach (Object entity in entities) {
@@ -141,7 +141,7 @@ namespace Mocking {
 			}
 		}
 
-		public void InsertOnSubmit(object entity) => InsertOnSubmit((TEntity)entity);
+		public void InsertOnSubmit(Object entity) => InsertOnSubmit((TEntity)entity);
 
 		public TEntity TryGetAttached(Object[] keyValues) => throw new NotImplementedException();
 
@@ -215,7 +215,3 @@ namespace Mocking {
 	}
 
 }
-
-
-
-
